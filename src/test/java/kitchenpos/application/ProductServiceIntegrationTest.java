@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 
 import kitchenpos.domain.Product;
+import kitchenpos.dto.ProductDto;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -47,8 +48,8 @@ class ProductServiceIntegrationTest {
     }
 
     private Product 상품_등록(String name, int price) {
-        Product product = new Product(name, new BigDecimal(price));
-        Product created = productService.create(product);
-        return created;
+        ProductDto productDto = new ProductDto(name, new BigDecimal(price));
+        ProductDto created = productService.create(productDto);
+        return created.toProduct();
     }
 }

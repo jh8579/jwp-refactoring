@@ -16,6 +16,7 @@ import org.junit.runner.RunWith;
 
 import kitchenpos.domain.Menu;
 import kitchenpos.domain.MenuProduct;
+import kitchenpos.dto.MenuDto;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -80,6 +81,7 @@ class MenuServiceIntegrationTest {
     }
 
     private Menu 메뉴_등록(String name, int price, Long menuGroupId, List<MenuProduct> menuProducts) {
-        return menuService.create(new Menu(name, new BigDecimal(price), menuGroupId, menuProducts));
+        MenuDto menuDto = menuService.create(new MenuDto(name, new BigDecimal(price), menuGroupId, menuProducts));
+        return menuDto.toMenu();
     }
 }
